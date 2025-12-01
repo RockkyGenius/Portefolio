@@ -27,7 +27,7 @@
   {
     "name": "Développement d’une application de génération de graphique automatisée ",
     "role": "Projet Universitaire",
-    "url": "https://github.com/...",
+    "url": "https://github.com/albanlpcr",
     "languages": ["C#","SQL Server", "Python","Git"],
     "image": "/public/imagesProjet/GenerationGraphique.png",
     "cahierDesCharges":"Développer une page web permettant d'utiliser une API pour jouer à un jeu de Chasse au trésor",
