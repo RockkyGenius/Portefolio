@@ -22,7 +22,7 @@ interface Props {
   title: string;
   pubDate: Date;
   description: string;
-  tags: string[];
+  tags?: string[];
 }
 
 export async function GET(context: APIContext) {
@@ -53,13 +53,13 @@ export async function GET(context: APIContext) {
         <div tw="flex items-center bg-neutral-800/50 rounded-xl px-4 py-2">
           <img src="https://i.imgur.com/VQfJ5Iz.png" tw="w-18 h-13" />
           <div tw="flex flex-col ml-4 border-l border-neutral-700/50 pl-4">
-            <span tw="text-neutral-400 font-semibold">David Cojocaru</span>
-            <span tw="text-neutral-400 text-sm">cojocaru-david</span>
+            <span tw="text-neutral-400 font-semibold">Alban Laparcerie</span>
+            <span tw="text-neutral-400 text-sm">alban-laparcerie</span>
           </div>
         </div>
       </div>
     </div>
-  `;
+  ` as any; // Fix TS type error: force 'markup' to be acceptable for satori
 
   const svg = await satori(markup, {
     fonts: [
@@ -85,12 +85,13 @@ export async function GET(context: APIContext) {
     },
   }).render();
 
-  return new Response(image.asPng(), {
+  const pngBuffer = image.asPng();
+  return new Response(new Uint8Array(pngBuffer), {
     headers: {
       "Content-Type": "image/png",
       "Cache-Control": "public, max-age=31536000, immutable",
-      "Content-Length": image.asPng().length.toString(),
-      "Surrogate-Key": tags.join(" "),
+      "Content-Length": pngBuffer.length.toString(),
+      "Surrogate-Key": tags?.join(" ") || "",
       "Query-String-Hash": "image",
       "Cache-Tag": "image",
       "Keep-Alive": "timeout=5, max=1000",

@@ -1,11 +1,11 @@
 export const tag: string = "@cojocaru-david";
-export const author: string = "David Cojocaru";
-export const github: string = "https://github.com/cojocaru-david";
+export const author: string = "Alban Laparcerie";
+export const github: string = "https://github.com/albanlpcr";
 
-export const title: string = "David Cojocaru - Junior Software Developer";
+export const title: string = "Alban - Developpeur Informatique";
 export const description: string =
-  "I am a self-taught developer who loves to build things for the web. With 5+ years of coding experience, I'm passionate about creating elegant solutions and exploring new technologies. Currently working on exciting projects while remaining open to new opportunities.";
-export const country: string = "Romania";
+  "Etudiant en 2ème année de BUT Informatique à l'IUT de Bordeaux, je suis particulièrement attiré par le développement backend. Ce portefolio est une vitrine sur mes projets et compétences informatiques. J'ai pour objectif d'effectuer un stage de 8 à 10 semaines entre le 6 avril et le 12 juin 2026.";
+export const country: string = "Bordeaux 33000";
 
 export const FooterSocials = [
   {
@@ -15,12 +15,12 @@ export const FooterSocials = [
   },
   {
     name: "LinkedIn",
-    url: "https://www.linkedin.com/in/cojocaru-david/",
+    url: "https://www.linkedin.com/in/alban-laparcerie-b71bba388/",
     icon: "mdi:linkedin",
   },
   {
     name: "Email",
-    url: "mailto:contact@cojocarudavid.me",
+    url: "mailto:alban.laparcerie@gmail.com",
     icon: "mdi:email",
   },
 ];
@@ -36,11 +36,13 @@ interface Meta {
 }
 
 export const defaultMeta: Meta = {
-  title: "David Cojocaru - Home",
+  title: "Alban Laparcerie - Accueil",
   description:
-    "Discover the portfolio and blog of David Cojocaru, a 16-year-old software developer and cybersecurity enthusiast from Romania. Explore his expertise in web development, programming languages, and more.",
+    "Etudiant en 2ème année de BUT Informatique à l'IUT de Bordeaux, je suis particulièrement attiré par le développement backend." +
+    "Ce portefolio est une vitrine sur mes projets et compétences informatiques."
+    +"J'ai pour objectif d'effectuer un stage de 8 à 10 semaines entre le 6 avril et le 12 juin 2026.",
   keywords: [
-    "david cojocaru",
+    "alban laparcerie",
     "junior software developer",
     "junior",
     "cybersecurity enthusiast",
@@ -52,7 +54,7 @@ export const defaultMeta: Meta = {
   ],
   ogImage: {
     src: "/banner.png",
-    alt: "David Cojocaru - Home",
+    alt: "Alban Laparcerie - Home",
   },
 };
 

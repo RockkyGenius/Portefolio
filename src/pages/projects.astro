@@ -9,9 +9,12 @@ interface Project {
   description: string;
   stars: number;
   role: "author" | "contributor" | "maintainer";
-  url: string;
+  url?: string;
   languages: string[];
   website?: string;
+  image?: string;
+  cahierDesCharges?: string;
+  competencesDeveloppees?: string;
 }
 
 const openSourceContributions = data as Project[];
@@ -21,10 +24,10 @@ openSourceContributions.sort((a, b) => {
     return -1;
   }
   if (a.role === "maintainer" && b.role === "maintainer") {
-    return a.stars > b.stars ? -1 : 1;
+    return 0;
   }
   if (a.role === "author" && b.role === "author") {
-    return a.stars > b.stars ? -1 : 1;
+    return 0;
   }
   if (a.role === "author" && b.role !== "author") {
     return -1;
@@ -32,21 +35,19 @@ openSourceContributions.sort((a, b) => {
   return 0;
 });
 
-const description =
-  "I love open source and I have been contributing to different projects for the some time. Here is a list of projects that I have contributed to and authored.";
 ---
 
 <AppLayout
-  title="David Cojocaru - Projects"
+  title="Alban Laparcerie - Projects"
   tags={[
     "projects",
     "open source",
     "contributions",
     "github",
-    "david cojocaru",
-    "david",
-    "cojocaru",
-    "davidcojocaru",
+    "alban laparcerie",
+    "alban",
+    "laparcerie",
+    "albanlaparcerie",
     "romania",
     "developer",
     "software engineer",
@@ -58,25 +59,22 @@ const description =
     "full stack",
     "full stack developer",
   ]}
-  description={description}
+  description="Mes projets et réalisations"
 >
-  <Header title="Open Source" />
-  <p
-    class="max-w-prose mb-10 font-normal dark:text-neutral-400 text-neutral-600 leading-relaxed"
-  >
-    {description}
-  </p>
+  <Header title="Mes Projets" />
   <ul class="grid grid-cols-1 gap-8">
     {
       openSourceContributions.map((project) => (
         <ProjectCard
           name={project.name}
           description={project.description}
-          stars={project.stars}
           role={project.role}
           url={project.url}
           languages={project.languages}
           website={project.website || ""}
+          image={project.image}
+          cahierDesCharges={project.cahierDesCharges}
+          competencesDeveloppees={project.competencesDeveloppees}
         />
       ))
     }

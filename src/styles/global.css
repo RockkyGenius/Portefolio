@@ -32,6 +32,34 @@ body::-webkit-scrollbar-thumb:hover {
   transition: background 0.4s ease;
 }
 
+/* Styles pour la barre de défilement horizontale des compétences */
+.overflow-x-auto::-webkit-scrollbar {
+  height: 8px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.8);
+}
+
+.dark .overflow-x-auto::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.6);
+}
+
+.dark .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.9);
+}
+
 @keyframes blob {
   0% {
     transform: translate(-50%, 0) rotate(0deg);

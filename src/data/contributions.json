@@ -1,27 +1,36 @@
 [
   {
-    "name": "cojocaru-david",
-    "stars": 33,
-    "url": "https://github.com/cojocaru-david/cojocarudavid.me",
-    "description": "Blazing fast personal website built with Astro.js and styled with Tailwind CSS.",
-    "languages": [
-      "Astro",
-      "TypeScript",
-      "JavaScript",
-      "CSS"
-    ],
-    "role": "author"
+    "name": "Jeu de plateau",
+    "role": "Projet Universitaire",
+    "languages": ["Java", "Git","NetBeans"],
+    "image": "/imagesProjet/Lowatem.png",
+    "cahierDesCharges": "J’ai réaliser un projet consistant à implementé du code dans un code existant permettant de rajouter de la difficulté à un jeu en fonction des niveaux.",
+    "competencesDeveloppees": "- parcourir des fichiers de code volumineux → comprendre la structure \n - mettre en pratique les connaissances en langage objet → coder de manière optimisé \n - gestion de fichiers avec git → récupération et sauvegarde de fichiers à distance"
   },
   {
-    "name": "david-dark-code",
-    "stars": 12,
-    "url": "https://github.com/cojocaru-david/david-dark-code",
-    "website": "https://marketplace.visualstudio.com/items?itemName=cojocaru-david.david-dark-code",
-    "description": "David Dark is a dark theme for VS Code. It is based on the github theme and the default dark theme. It is designed to be easy on the eyes and to be used for long periods of time.",
-    "languages": [
-      "NodeJS",
-      "JSON"
-    ],
-    "role": "author"
+    "name": "Conception d’une base de données gérant le système d’inscription de l’université",
+    "role": "Projet Universitaire",
+    "languages": ["SQL","WinDesign"],
+    "image": "/imagesProjet/BDUniversité.png",
+    "cahierDesCharges":"Ce projet consister à modéliser Modèle Conceptuel de base de donnée à partir des informations donné par un client suit un entretient pour ensuite le transphormé en base de  donnée. ",
+    "competencesDeveloppees":" - Synthétiser les nombreuses informations donné par le client \n - Concevoir  un MCD correspondant au besoins du client \n - Créer une base de donnée  et remplir cette base créer à partir du MCD"
+
+  },
+  {
+    "name": "Chasse au trésor",
+    "role": "Projet Universitaire",
+    "languages": ["JavaScript","Html", "CSS"],
+    "image": "/imagesProjet/chasseAuTresor.png",
+    "cahierDesCharges":" - Développer une page web permettant d'utiliser une API pour jouer à un jeu de Chasse au trésor",
+  "competencesDeveloppees":"- Apprentissage du DOM JavaScript \n - Gestion de requêtes asynchrones \n - Utilisation d'un API"  
+  },
+  {
+    "name": "Développement d’une application de génération de graphique automatisée ",
+    "role": "Projet Universitaire",
+    "url": "https://github.com/...",
+    "languages": ["C#","SQL Server", "Python","Git"],
+    "image": "/public/imagesProjet/GenerationGraphique.png",
+    "cahierDesCharges":"Développer une page web permettant d'utiliser une API pour jouer à un jeu de Chasse au trésor",
+  "competencesDeveloppees":"- Concevoir une interface fonctionnel et acessible\n - Gestion de la connexion Interface -> Base de donnée\n - Travail collaboratif avec une équipe de 3 personnes sur Git"  
   }
 ]

@@ -1,37 +1,98 @@
 ---
 import AppLayout from "../../layouts/Layout.astro";
-import BlogCard from "../../components/BlogCard.astro";
-import Header from "../../components/Header.astro";
-import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+import { FooterSocials } from "../../data/socials";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) =>
-    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-);
-const title = "David Cojocaru - Blog";
-const description =
-  "My personal collection of code snippets, starter guides, tutorials and interesting things I found online. I hope you find something useful here.";
+const title = "Alban Laparcerie - Contact";
+const description = "Contactez-moi pour toute opportunité de stage";
+
+// Informations de contact
+const contactInfo = {
+  email: "alban.laparcerie@gmail.com", // À modifier avec votre email
+  linkedin: "https://www.linkedin.com/in/alban-laparcerie", // À modifier avec votre LinkedIn
+  phone: "+33 6 03 28 86 69", // À modifier avec votre numéro
+};
 ---
 
 <AppLayout title={title} description={description}>
-  <Header title="Blog" />
-  <p
-    class="max-w-prose mb-10 font-normal dark:text-neutral-400 text-neutral-600 leading-relaxed"
-  >
-    {description}
-  </p>
-  <ul class="space-y-8">
-    {
-      posts.map((post) => (
-        <BlogCard
-          title={post.data.title}
-          pubDate={post.data.pubDate}
-          description={post.data.description}
-          url={`/blog/${post.id}/`}
-          tags={post.data.tags}
-          content={post?.body ?? null}
+  <div class="max-w-2xl mx-auto space-y-8 flex flex-col items-center justify-center min-h-[60vh]">
+    <h1 class="text-3xl font-bold dark:text-neutral-200 text-neutral-900 text-center sm:text-4xl">
+      Me contacter
+    </h1>
+    <p class="text-lg font-normal dark:text-neutral-400 text-neutral-600 leading-relaxed text-center">
+      Pour toute opportunité de stage
+    </p>
+
+    <div class="relative flex justify-center">
+      <button
+        id="contact-button"
+        class="px-6 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors duration-300 flex items-center justify-center gap-2"
+        aria-expanded="false"
+        aria-haspopup="true"
+      >
+        Contacts
+        <Icon
+          id="contact-arrow"
+          name="mdi:chevron-down"
+          class="w-5 h-5 transition-transform duration-300"
         />
-      ))
+      </button>
+
+      <div
+        id="contact-dropdown"
+        class="hidden absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-96 bg-white dark:bg-neutral-800 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-700 overflow-hidden z-10"
+      >
+        <a
+          href={`mailto:${contactInfo.email}`}
+          class="flex items-center gap-3 px-4 py-4 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors duration-200 text-neutral-700 dark:text-neutral-300 min-w-0"
+        >
+          <Icon name="mdi:email" class="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+          <span class="break-all">{contactInfo.email}</span>
+        </a>
+        <a
+          href={contactInfo.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-3 px-4 py-4 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors duration-200 text-neutral-700 dark:text-neutral-300 border-t border-neutral-200 dark:border-neutral-700"
+        >
+          <Icon name="mdi:linkedin" class="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+          <span>LinkedIn</span>
+        </a>
+        <a
+          href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
+          class="flex items-center gap-3 px-4 py-4 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors duration-200 text-neutral-700 dark:text-neutral-300 border-t border-neutral-200 dark:border-neutral-700"
+        >
+          <Icon name="mdi:phone" class="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+          <span>{contactInfo.phone}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const contactButton = document.getElementById("contact-button");
+    const contactDropdown = document.getElementById("contact-dropdown");
+    const contactArrow = document.getElementById("contact-arrow");
+
+    if (contactButton && contactDropdown && contactArrow) {
+      contactButton.addEventListener("click", () => {
+        const isExpanded = contactButton.getAttribute("aria-expanded") === "true";
+        contactDropdown.classList.toggle("hidden", isExpanded);
+        contactButton.setAttribute("aria-expanded", (!isExpanded).toString());
+        contactArrow.classList.toggle("rotate-180", !isExpanded);
+      });
+
+      // Fermer le menu si on clique en dehors
+      document.addEventListener("click", (e) => {
+        if (
+          !contactButton.contains(e.target as Node) &&
+          !contactDropdown.contains(e.target as Node)
+        ) {
+          contactDropdown.classList.add("hidden");
+          contactButton.setAttribute("aria-expanded", "false");
+          contactArrow.classList.remove("rotate-180");
+        }
+      });
     }
-  </ul>
+  </script>
 </AppLayout>

@@ -1,16 +1,18 @@
 ---
 import Badge from "@components/Badge.astro";
 import { Icon } from "astro-icon/components";
-import { getGitHubStars } from "../utils/github";
+import { Image } from "astro:assets";
 
 interface Props {
   name: string;
   role: "author" | "contributor" | "maintainer";
-  url: string;
+  url?: string;
   description: string | null;
   languages: string[];
-  stars: number;
   website: string | null;
+  image?: string;
+  cahierDesCharges?: string;
+  competencesDeveloppees?: string;
 }
 
 const colors = {
@@ -19,35 +21,7 @@ const colors = {
   contributor: "green",
 } as const;
 
-const { name, role, url, description, languages, website } = Astro.props;
-
-const getRepoPath = (githubUrl: string) => {
-  try {
-    const urlObj = new URL(githubUrl);
-    if (urlObj.hostname === "github.com") {
-      return urlObj.pathname.substring(1);
-    }
-  } catch (e) {
-    console.error("Invalid URL:", githubUrl);
-  }
-  return "";
-};
-
-const repoPath = getRepoPath(url);
-let stars = 0;
-let loading = true;
-let error = false;
-
-try {
-  if (repoPath) {
-    stars = await getGitHubStars(repoPath);
-  }
-  loading = false;
-} catch (e) {
-  console.error("Error fetching stars:", e);
-  loading = false;
-  error = true;
-}
+const { name, role, url, description, languages, website, image, cahierDesCharges, competencesDeveloppees } = Astro.props;
 ---
 
 <li
@@ -70,18 +44,22 @@ try {
       <Badge text={role} color={colors[role]} />
     </div>
     <div class="flex gap-2">
-      <a
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Open ${name} repository in a new tab`}
-        class="relative repo-icon-link"
-      >
-        <Icon
-          name="mdi:github"
-          class="w-6 fill-current dark:hover:text-neutral-50 hover:text-neutral-800 transition-all duration-300 transform hover:scale-110"
-        />
-      </a>
+      {
+        url && (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${name} repository in a new tab`}
+            class="relative repo-icon-link"
+          >
+            <Icon
+              name="mdi:github"
+              class="w-6 fill-current dark:hover:text-neutral-50 hover:text-neutral-800 transition-all duration-300 transform hover:scale-110"
+            />
+          </a>
+        )
+      }
       {
         website && (
           <a
@@ -100,43 +78,42 @@ try {
       }
     </div>
   </div>
-  <div class="stars-container flex items-center gap-2 py-1">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      class="w-5 text-amber-400"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-        clip-rule="evenodd"></path>
-    </svg>
-
-    {
-      loading && (
-        <div class="inline-flex space-x-1">
-          <div class="w-1.5 h-1.5 rounded-full bg-neutral-300 dark:bg-neutral-600 animate-bounce" />
-          <div class="w-1.5 h-1.5 rounded-full bg-neutral-300 dark:bg-neutral-600 animate-bounce [animation-delay:0.2s]" />
-          <div class="w-1.5 h-1.5 rounded-full bg-neutral-300 dark:bg-neutral-600 animate-bounce [animation-delay:0.4s]" />
-        </div>
-      )
-    }
-
-    {
-      !loading && !error && (
-        <span class="font-medium">{stars.toLocaleString()}</span>
-      )
-    }
-
-    {error && <span class="text-red-500 text-sm">Unable to fetch</span>}
-  </div>
 
   {
-    description && (
-      <p class="leading-relaxed mt-1 text-neutral-600 dark:text-neutral-300 line-clamp-3 group-hover:line-clamp-none transition-all duration-300">
-        {description}
-      </p>
+    image && (
+      <div class="mt-4 rounded-lg overflow-hidden">
+        <img
+          src={image}
+          alt={`${name} project image`}
+          class="w-full h-auto object-cover"
+        />
+      </div>
+    )
+  }
+
+  {
+    cahierDesCharges && (
+      <div class="mt-4">
+        <h3 class="text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-2">
+          Cahier des charges
+        </h3>
+        <p class="leading-relaxed text-neutral-600 dark:text-neutral-300">
+          {cahierDesCharges}
+        </p>
+      </div>
+    )
+  }
+
+  {
+    competencesDeveloppees && (
+      <div class="mt-4">
+        <h3 class="text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-2">
+          Compétences développées
+        </h3>
+        <p class="leading-relaxed text-neutral-600 dark:text-neutral-300 whitespace-pre-line">
+          {competencesDeveloppees}
+        </p>
+      </div>
     )
   }
 
